@@ -159,12 +159,12 @@ export default function WelcomeHero({ onStart, onOpenPresentation }) {
           </button>
 
           {onOpenPresentation && (
-            <button 
+            <button
               onClick={onOpenPresentation}
               style={{
-                background: '#581c87',
-                color: 'white',
-                border: 'none',
+                background: 'white',
+                color: '#581c87',
+                border: '2px solid #581c87',
                 padding: '16px 36px',
                 fontSize: '1.15rem',
                 fontWeight: 800,
@@ -173,39 +173,15 @@ export default function WelcomeHero({ onStart, onOpenPresentation }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                boxShadow: '0 8px 24px rgba(88, 28, 135, 0.35)',
+                boxShadow: '0 4px 14px rgba(88, 28, 135, 0.12)',
                 transition: 'all 0.2s ease'
               }}
+              title="הצגת המצגת הקלינית ישירות"
             >
               <span>📽️</span>
-              מצגת שקופיות מלאה (27 שקופיות)
+              הצג מצגת
             </button>
           )}
-
-          <a
-            href="/GLP1_Presentation_Tiferet_Eliav_Redesign.pptx"
-            download="GLP1_Presentation_Tiferet_Eliav_Redesign.pptx"
-            style={{
-              background: 'white',
-              color: '#581c87',
-              border: '2px solid #581c87',
-              padding: '16px 28px',
-              fontSize: '1.05rem',
-              fontWeight: 800,
-              borderRadius: '16px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              textDecoration: 'none',
-              boxShadow: '0 4px 12px rgba(88, 28, 135, 0.1)',
-              transition: 'all 0.2s ease'
-            }}
-            title="הורדת קובץ המצגת המעודכן (.pptx)"
-          >
-            <span>📥</span>
-            הורד מצגת מעודכנת (.pptx)
-          </a>
         </div>
       </div>
     </div>
