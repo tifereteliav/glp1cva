@@ -89,9 +89,10 @@ export default function App() {
               {/* App Brand & Patient Name */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <img src="/tiferet_eliav_logo.jpg" alt="TIFERET ELIAV Diabetes & AI" style={{ height: '48px', borderRadius: '12px', boxShadow: '0 4px 14px rgba(79, 70, 229, 0.2)', border: '1.5px solid #c7d2fe' }} />
+                <img src="/novo_sponsor.png" alt="הרצאה זו בחסות חברת נובו נורדיסק" style={{ height: '40px', borderRadius: '6px' }} />
                 <div>
                   <h1 style={{ fontSize: '1.15rem', fontWeight: 900, color: '#0f172a' }}>
-                    סימולציית טיפול ב-GLP1 במטופל הסובל מסוכרת והשמנה וסיבוכים נילווים
+                    סימולציית טיפול ב-GLP1RA במטופל הסובל מסוכרת והשמנה וסיבוכים נילווים
                   </h1>
                   <div style={{ fontSize: '0.84rem', color: '#4f46e5', fontWeight: 700 }}>
                     <span style={{ color: '#0284c7' }}>TIFERET ELIAV</span> • Diabetes & AI | מטופל: <strong>יעקב (בן 67)</strong> (BMI 36.1)

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Pill, ShieldCheck, ArrowDownRight, TrendingDown, AlertCircle, Sparkles, Scale, Activity, CheckCircle2, HeartPulse } from 'lucide-react';
+import RegNote, { REFS } from './RegNote';
+import { INSULIN_SPC_NOTE, INDIVIDUAL_CASE_NOTE } from '../data/simulationData';
 
 export default function Stage2Titration({ data, onNext, onPrev }) {
   const wegovySteps = [
@@ -80,6 +82,7 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
             );
           })}
         </div>
+        <RegNote refs={[REFS.wegovySpc]} />
       </div>
 
       {/* Graphic Illustration Card Section */}
@@ -87,7 +90,7 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
           <Activity size={24} color="#0d9488" />
           <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>
-            תוצאות מעקב קליני – התאמת מינונים והישגים
+            הישגים קליניים במעקב ספטמבר 2026 והתאמות מינוני האינסולין של יעקב
           </h3>
         </div>
 
@@ -132,7 +135,7 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
               </div>
             </div>
             <div style={{ marginTop: '16px', background: 'rgba(255,255,255,0.85)', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', color: '#be123c', fontWeight: 700, textAlign: 'center' }}>
-              📉 ירידה דרמטית ב-A1C מ-13.4% ל-5.0%!
+              ירידה ב-A1C מ-13.4% ל-5.0%, ללא אירועי היפוגליקמיה חמורים
             </div>
           </div>
           
@@ -191,7 +194,7 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                 <span className="badge badge-blue" style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-                  💉 אינסולין קצר טווח (נובורפיד)
+                  💉 אינסולין קצר טווח (נובורפיד, אינסולין אספארט)
                 </span>
                 <TrendingDown size={26} color="#0284c7" />
               </div>
@@ -214,7 +217,7 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
               </div>
             </div>
             <div style={{ marginTop: '16px', background: 'rgba(255,255,255,0.8)', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', color: '#0369a1', fontWeight: 700, textAlign: 'center' }}>
-              📉 מינון אינסולין קצר טווח הורד מ-12 יחידות לארוחה ל-8 יחידות לארוחה
+              המטופל לא קיבל אינסולין קצר טווח בהתחלה. לאחר הוספת נובורפיד הגיע ל-12 יחידות לארוחה, ועם ההגעה למינון המקסימלי של וויגובי (2.4 מ"ג) ירד ל-8 יחידות לארוחה.
             </div>
           </div>
 
@@ -245,13 +248,13 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
                   <span style={{ fontSize: '0.9rem', fontWeight: 900, color: '#7e22ce' }}>2.4 mg / שבוע</span>
                 </div>
                 <div style={{ background: 'white', padding: '10px 14px', borderRadius: '12px', border: '1px solid #d8b4fe', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0f766e' }}>אינסולין בזאלי (טרגלודק)</span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0f766e' }}>אינסולין בזאלי (טרגלודק, דגלודק)</span>
                   <span style={{ fontSize: '0.9rem', fontWeight: 900, color: '#0d9488' }}>36 יחידות</span>
                 </div>
               </div>
             </div>
             <div style={{ marginTop: '16px', background: 'rgba(255,255,255,0.85)', padding: '10px 14px', borderRadius: '10px', fontSize: '0.88rem', color: '#6b21a8', fontWeight: 700, textAlign: 'center' }}>
-              ✔ מינון אינסולין בזאלי (טרגלודק) הותאם ל-36 יחידות
+              האינסולין הבזאלי ירד מ-40 יחידות ל-36 יחידות פעם ביום.
             </div>
           </div>
 
@@ -270,13 +273,36 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
           <AlertCircle size={24} color="#ca8a04" style={{ flexShrink: 0, marginTop: '2px' }} />
           <div>
             <h4 style={{ fontWeight: 800, color: '#854d0e', fontSize: '1.05rem', marginBottom: '4px' }}>
-              פרוטוקול בטיחות למניעת היפוגליקמיה:
+              התאמת האינסולין הבזאלי במקרה זה:
             </h4>
             <p style={{ fontSize: '0.95rem', color: '#a16207', lineHeight: 1.5 }}>
-              במידה וערכי הסוכר בצום בבוקר יורדים מ-90 mg/dL, יש להוריד את מינון הטרגלודק (Degludec) ב-2 יחידות באופן מיידי. המטופל קיבל הדרכה מפורטת להחזקת סוכר זמין ולשימוש בחיישן Libre 2.
+              במקרה זה הוחלט על ידי הצוות המטפל כי במידה וערכי הסוכר בצום בבוקר יורדים מתחת ל-90 mg/dL, יופחתו 2 יחידות מהאינסולין הבזאלי (Degludec), תוך ניטור רציף ב-Libre.
             </p>
           </div>
         </div>
+
+        <div style={{
+          background: '#fef2f2',
+          border: '1.5px solid #fecaca',
+          padding: '18px 24px',
+          borderRadius: '16px',
+          display: 'flex',
+          gap: '14px',
+          alignItems: 'flex-start',
+          marginTop: '14px'
+        }}>
+          <AlertCircle size={24} color="#dc2626" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <div>
+            <h4 style={{ fontWeight: 800, color: '#991b1b', fontSize: '1.05rem', marginBottom: '4px' }}>
+              נקודת בטיחות (מתוך עלון התכשיר):
+            </h4>
+            <p style={{ fontSize: '0.95rem', color: '#b91c1c', lineHeight: 1.5 }}>
+              בעת התחלת טיפול בסמגלוטייד במטופלים עם סוכרת מסוג 2, יש לשקול הפחתת מינון האינסולין הניתן במקביל, להפחתת הסיכון להיפוגליקמיה (Wegovy® IL SPC).
+            </p>
+          </div>
+        </div>
+
+        <RegNote notes={[INDIVIDUAL_CASE_NOTE, INSULIN_SPC_NOTE]} />
 
       </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Activity, BarChart2, ShieldCheck, CheckCircle2, FileText, Zap } from 'lucide-react';
+import RegNote, { REFS } from './RegNote';
 
 export default function Stage3AGP({ data, onNext, onPrev }) {
   const [showDocModal, setShowDocModal] = useState(false);
@@ -36,7 +37,7 @@ export default function Stage3AGP({ data, onNext, onPrev }) {
           </div>
           <div>
             <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a' }}>
-              מדדי חיישן FreeStyle Libre 2 תחת Wegovy 2.4mg (24/8/2026 - 6/9/2026)
+              תוצאות דוח ה-AGP המעודכן (24/8/2026 - 6/9/2026)
             </h3>
             <p style={{ color: '#64748b', fontSize: '0.95rem' }}>נתונים מעודכנים לאחר 14 ימי ניטור (61% זמן חיישן פעיל)</p>
           </div>
@@ -59,7 +60,7 @@ export default function Stage3AGP({ data, onNext, onPrev }) {
           }}>
             <div style={{ fontSize: '0.88rem', color: '#047857', fontWeight: 700 }}>זמן בטווח היעד (TIR 70-180)</div>
             <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#10b981', margin: '4px 0' }}>79%</div>
-            <div style={{ fontSize: '0.82rem', color: '#059669', fontWeight: 600 }}>↑ זינוק מ-30%! (יעד &gt; 70%)</div>
+            <div style={{ fontSize: '0.82rem', color: '#059669', fontWeight: 600 }}>עלה מ-30% (יעד &gt; 70%)</div>
           </div>
 
           <div style={{
@@ -83,7 +84,7 @@ export default function Stage3AGP({ data, onNext, onPrev }) {
           }}>
             <div style={{ fontSize: '0.88rem', color: '#6b21a8', fontWeight: 700 }}>שונות גלוקוז (%CV)</div>
             <div style={{ fontSize: '2.8rem', fontWeight: 900, color: '#7e22ce', margin: '4px 0' }}>37.3%</div>
-            <div style={{ fontSize: '0.82rem', color: '#7e22ce', fontWeight: 600 }}>שונות מוגדרת שונה (יעד ≤ 36%)</div>
+            <div style={{ fontSize: '0.82rem', color: '#7e22ce', fontWeight: 600 }}>קרובה ליעד היציבות (≤36%)</div>
           </div>
 
           <div style={{
@@ -110,7 +111,7 @@ export default function Stage3AGP({ data, onNext, onPrev }) {
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontWeight: 700, fontSize: '0.95rem' }}>
             <span>חלוקת זמן בטווחים (Time in Ranges Bar):</span>
-            <span style={{ color: '#059669' }}>שיפור קליני מרשים תחת Wegovy 2.4mg</span>
+            <span style={{ color: '#059669' }}>לאחר השינוי בטיפול</span>
           </div>
 
           {/* Bar */}
@@ -151,9 +152,47 @@ export default function Stage3AGP({ data, onNext, onPrev }) {
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <button onClick={() => openDoc('/labs/AGP_after_wegovy.png')} className="btn-primary">
             <BarChart2 size={16} />
-            צפה בדוח AGP מקורי תחת Wegovy 2.4mg (24/8 - 6/9)
+            צפה בדוח AGP מקורי (24/8 - 6/9)
           </button>
         </div>
+
+        {/* Before / after comparison (as in the approved deck) */}
+        <div style={{ marginTop: '28px' }}>
+          <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '12px' }}>
+            השוואת מדדי החיישן – לפני השינוי בטיפול ולאחריו
+          </h3>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.95rem', minWidth: '560px' }}>
+              <thead>
+                <tr style={{ background: '#2b2560', color: 'white' }}>
+                  <th style={{ padding: '10px 14px', textAlign: 'right' }}>מדד קליני ב-AGP</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'center' }}>לפני השינוי (פברואר 2026)</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'center' }}>בעקבות השינוי (ספטמבר 2026)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['זמן בטווח היעד (TIR 70-180 mg/dL)', '30% בלבד', '79% (עבר את היעד!)'],
+                  ['רמת גלוקוז ממוצעת', '220 mg/dL', '116 mg/dL (נחתך בחצי!)'],
+                  ['מדד ניהול גלוקוז משוער (GMI)', '8.6%', '6.1%'],
+                  ['ערכים מעל הטווח (>180 mg/dL)', '70% (מתוכם 27% מעל 250!)', '8% בלבד (0% מעל 250!)'],
+                  ['שונות גלוקוז (%CV)', '32.1%', '37.3%'],
+                  ['משקל המטופל ו-BMI', '96 ק"ג (BMI 36.1)', '85 ק"ג (BMI 32.0)'],
+                  ['מינון אינסולין בולוס (נובורפיד - אספארט)', '12 יחידות לארוחה', '8 יחידות לארוחה'],
+                  ['מינון אינסולין בזאלי (טרגלודק - דגלודק)', '40 יחידות פעם ביום', '36 יחידות פעם ביום']
+                ].map((r, i) => (
+                  <tr key={i} style={{ background: i % 2 ? 'white' : '#f3f0fa' }}>
+                    <td style={{ padding: '9px 14px', fontWeight: 800, color: '#2b2560', borderBottom: '1px solid #e3dff0' }}>{r[0]}</td>
+                    <td style={{ padding: '9px 14px', textAlign: 'center', color: '#c24863', borderBottom: '1px solid #e3dff0' }}>{r[1]}</td>
+                    <td style={{ padding: '9px 14px', textAlign: 'center', color: '#1f8f83', fontWeight: 800, borderBottom: '1px solid #e3dff0' }}>{r[2]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <RegNote refs={[REFS.tir]} />
 
       </div>
 
@@ -197,7 +236,7 @@ export default function Stage3AGP({ data, onNext, onPrev }) {
               justify: 'space-between',
               alignItems: 'center'
             }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a' }}>דוח AGP מקורי תחת Wegovy 2.4mg</h3>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a' }}>דוח AGP מקורי (24/8/2026 - 6/9/2026)</h3>
               <button onClick={() => setShowDocModal(false)} className="btn-secondary" style={{ padding: '6px 16px' }}>סגור ✕</button>
             </div>
             <div style={{ padding: '20px', overflowY: 'auto', textAlign: 'center' }}>

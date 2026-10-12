@@ -64,7 +64,7 @@ export default function WelcomeHero({ onStart, onOpenPresentation }) {
           marginBottom: '20px',
           letterSpacing: '-0.5px'
         }}>
-          ברוכים הבאים לסימולציית טיפול ב-<span style={{ color: '#4f46e5' }}>GLP1</span> במטופל הסובל מסוכרת והשמנה וסיבוכים נילווים
+          ברוכים הבאים לסימולציית טיפול ב-<span style={{ color: '#4f46e5' }}>GLP1RA</span> במטופל הסובל מסוכרת והשמנה וסיבוכים נילווים
         </h1>
 
         {/* Subtitle */}
@@ -135,7 +135,7 @@ export default function WelcomeHero({ onStart, onOpenPresentation }) {
             </div>
             <div>
               <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>שאלות והתנסות</div>
-              <div style={{ fontSize: '0.85rem', color: '#64748b' }}>פתרון דילמות קליניות</div>
+              <div style={{ fontSize: '0.85rem', color: '#64748b' }}>חשיבה קלינית ושיח טיפולי</div>
             </div>
           </div>
         </div>
@@ -182,6 +182,11 @@ export default function WelcomeHero({ onStart, onOpenPresentation }) {
               הצג מצגת
             </button>
           )}
+        </div>
+
+        {/* Sponsor notice (as approved on the title slide) */}
+        <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center' }}>
+          <img src="/novo_sponsor.png" alt="הרצאה זו בחסות חברת נובו נורדיסק" style={{ height: '64px', borderRadius: '8px' }} />
         </div>
       </div>
     </div>

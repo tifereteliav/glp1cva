@@ -12,7 +12,7 @@ export default function PresentationView({ onExitToSimulation }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const containerRef = useRef(null);
 
-  const totalSlides = 42;
+  const totalSlides = 43;
 
   // Auto-play slideshow timer (5 seconds per slide)
   useEffect(() => {
@@ -115,7 +115,8 @@ export default function PresentationView({ onExitToSimulation }) {
     { slide: 20, label: 'שלב 2: החלטה טיפולית' },
     { slide: 31, label: 'שלב 3: טיטרציית Wegovy' },
     { slide: 35, label: 'שלב 4: תוצאות Libre ו-AGP' },
-    { slide: 38, label: 'שלב 5: סיכום ועקרונות' }
+    { slide: 38, label: 'שלב 5: סיכום ותובנות' },
+    { slide: 43, label: 'תקציר העלון' }
   ];
 
   return (
@@ -164,11 +165,11 @@ export default function PresentationView({ onExitToSimulation }) {
                 borderRadius: '6px', 
                 fontWeight: 700 
               }}>
-                GLP1 Redesign
+                GLP1RA
               </span>
             </div>
             <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-              TIFERET ELIAV • סימולציית טיפול ב-GLP1 במטופל עם סוכרת והשמנה (42 שקופיות)
+              TIFERET ELIAV • סימולציית טיפול ב-GLP1RA במטופל עם סוכרת והשמנה ({totalSlides} שקופיות)
             </div>
           </div>
         </div>
@@ -244,8 +245,8 @@ export default function PresentationView({ onExitToSimulation }) {
 
           {/* Download Redesigned PPTX File */}
           <a
-            href="/GLP1_Presentation_Tiferet_Eliav_Redesign.pptx"
-            download="GLP1_Presentation_Tiferet_Eliav_Redesign.pptx"
+            href="/GLP1_Webinar_Tiferet_Eliav.pptx"
+            download="GLP1_Webinar_Tiferet_Eliav.pptx"
             title="הורדת קובץ המצגת המעודכן (.pptx)"
             style={{
               background: '#581c87',
@@ -460,7 +461,7 @@ export default function PresentationView({ onExitToSimulation }) {
             }}>
               <div>
                 <h3 style={{ fontSize: '1.3rem', fontWeight: 900, color: '#f8fafc', margin: 0 }}>
-                  כל שקופיות המצגת (42 שקופיות)
+                  כל שקופיות המצגת ({totalSlides} שקופיות)
                 </h3>
                 <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '4px 0 0 0' }}>
                   לחץ על שקופית למעבר ישיר

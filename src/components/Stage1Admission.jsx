@@ -5,6 +5,7 @@ import {
   Utensils, Moon, AlertTriangle, MessageSquare, Heart, Smile, AlertCircle, 
   ThumbsUp, Sparkles, CheckCircle, XCircle 
 } from 'lucide-react';
+import RegNote, { AI_IMAGE_NOTE, REFS } from './RegNote';
 
 export default function Stage1Admission({ data, patient, onNext }) {
   // State for interactive collapsible sections (ALL CLOSED BY DEFAULT)
@@ -96,7 +97,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
       id: 'medication_adherence',
       category: 'היענות לטיפול התרופתי',
       nurseQuestion: 'האם אתה מקפיד לקחת את הטיפול התרופתי הקבוע שלך?',
-      patientAnswer: 'אני לוקח את האוזמפיק רק לפעמים כי אני חושש שזה יכול לפגוע לי בעיניים, וגם אני חושש לקחת את זה כי אני מרבה לטוס ולעבור בין מדינות וחושש מתופעות לוואי.',
+      patientAnswer: 'אני לוקח את האוזמפיק (סמגלוטייד SC) רק לפעמים כי אני חושש שזה יכול לפגוע לי בעיניים, וגם אני חושש לקחת את זה כי אני מרבה לטוס ולעבור בין מדינות וחושש מתופעות לוואי.',
       icon: Pill,
       color: '#059669',
       bgColor: '#ecfdf5'
@@ -109,8 +110,8 @@ export default function Stage1Admission({ data, patient, onNext }) {
       optionLabel: 'תגובה 1',
       revealedTitle: '🟢 תגובה אמפתית, מנרמלת ומגייסת (מומלצת)',
       nurseStatement: 'יעקב, אני מבינה אותך לגמרי. זה הכי טבעי בעולם שתפחד מהפצע ברגל, בטח אחרי מה שקרה לשכן שלך. העומס המטורף בעבודה והשינה המועטה בטוח לא מוסיפים לזה... דע שאתה לא לבד בזה, יש פה צוות שלם שיעזור לך ולצידך לאורך כל הדרך. אנחנו הולכים לשמור על הרגל שלך ביחד, וביחד נתקדם ונאזן את הסוכר צעד אחר צעד, בקצב שמתאים לך.',
-      patientReaction: 'נושם לרווחה, מביט באחות בעיניים רגועות יותר ומחייך קלות:',
-      patientQuote: 'תודה רבה, החשש מסיבוכים לפעמים משתק אותי אני שמח שיש כאן צוות שמבין ועוזר ואני מוכן לעשות מה שצריך כדי להתאזן.',
+      patientReaction: 'נושם לרווחה, מביט באחות בעיניים רגועות יותר ומחייך קלות',
+      patientQuote: 'תודה רבה, החשש מסיבוכים לפעמים משתק אותי אבל אני שמח שיש כאן צוות שמבין ועוזר ואני מוכן לעשות מה שצריך כדי להתאזן.',
       feedback: '✅ תגובה מומלצת ביותר! מתן לגיטימציה לחרדה והצעת שותפות בגובה העיניים מפיגים את המתח ויוצרים נכונות גבוהה לשיתוף פעולה.',
       badgeColor: '#10b981',
       isCorrect: true
@@ -118,33 +119,33 @@ export default function Stage1Admission({ data, patient, onNext }) {
     {
       id: 'critical',
       optionLabel: 'תגובה 2',
-      revealedTitle: '🔴 תגובה שיפוטית ומאיימת',
+      revealedTitle: '🔴 תגובה שיפוטית - תגובה מאיימת ומעוררת אשמה',
       nurseStatement: 'יעקב, אתה חייב להבין שעם HbA1C של 13.4% והתנהלות כזו של נשנושים וחוסר שינה, אתה מסכן את עצמך. אם לא תתחיל לקחת את עצמך בידיים, לעשות דיאטה מסודרת ולהתעמל, הפצע ברגל רק ילך ויידרדר ותגיע למצבים קשים כמו השכן.',
-      patientReaction: 'מתכווץ בכיסא, מקמץ גבות ומביט למטה בחוסר אונים:',
-      patientQuote: 'אני יודע שאני לא בסדר... אבל יש לי עבודה נורא לחוצה ואין לי זמן לנשום. הדיבורים האלה רק עושים לי יותר חרדה וגורמים לי להרגיש שאין לי סיכוי...',
-      feedback: '❌ תגובה אינה מומלצת. הטחת האשמות ואזהרות חמורות מגבירות את האשמה והחרדה של המטופל, וגורמות לו להסתגר במקום לפעול.',
+      patientReaction: 'מתכווץ בכיסא בחוסר אונים',
+      patientQuote: 'אני יודע שאני לא בסדר... הדיבורים האלה רק עושים לי יותר חרדה...',
+      feedback: '❌ הטחת אשמה מגבירה חרדה וגורמת להסתגרות והימנעות מטיפול.',
       badgeColor: '#ef4444',
       isCorrect: false
     },
     {
       id: 'technical',
       optionLabel: 'תגובה 3',
-      revealedTitle: '🟡 תגובה טכנית / פרוטוקולית בלבד',
+      revealedTitle: '🟡 תגובה טכנית - תגובה פרוטוקולית ללא אמפתיה',
       nurseStatement: 'טוב יעקב, אין מה להיכנס ללחץ ממה שקרה לשכן. לגבי הפצע ברגל - אנחנו נחליף לך חבישה במרפאת פצע, נתאים לך טיפול תרופתי חדש ונשלח אותך לעשות בדיקות מעבדה מעודכנות.',
-      patientReaction: 'מהנהן בקרירות, מתיישב זקוף ושומר על מרחק רגשי:',
-      patientQuote: 'בסדר, מה שתגידי... אני רק מקווה שהתרופות החדשות לא יעשו לי תופעות לוואי.',
-      feedback: '⚠️ תגובה חלקית בלבד. התמקדות בפרוטוקול הטכני בלבד מתעלמת ממה שמטריד את יעקב רגשית, ולא בונה אמון טיפולי עמוק.',
+      patientReaction: 'מהנהן בקרירות',
+      patientQuote: 'בסדר, מה שתגידי... רק מקווה שלא יהיו תופעות לוואי.',
+      feedback: '⚠️ התעלמות מהמצוקה הרגשית מונעת בניית אמון טיפולי עמוק.',
       badgeColor: '#f59e0b',
       isCorrect: false
     },
     {
       id: 'dismissive',
       optionLabel: 'תגובה 4',
-      revealedTitle: '⚪ תגובה המבטלת את חששות המטופל ("אל תדאג")',
+      revealedTitle: '⚪ תגובה מבטלת - ביטול חששות שטחי ("אל תדאג")',
       nurseStatement: 'אל תחשוב על דברים רעים כמו כריתות, תהיה אופטימי! יהיה בסדר, רק תדאג לקחת את התרופות בזמן והכל יסתדר.',
-      patientReaction: 'מניע את ראשו באי-נוחות ונשאר מוטרד:',
-      patientQuote: 'קל לומר "תהיה אופטימי", אבל הפצע הזה עדיין ברגל שלי והוא מאוד מפחיד אותי...',
-      feedback: '❌ תגובה אינה מומלצת. עידוד שטחי ("יהיה בסדר / תהיה אופטימי") מבטל את החשש האמיתי של המטופל וגורם לו להרגיש שלא באמת מקשיבים לו.',
+      patientReaction: 'מניע ראשו באי-נוחות',
+      patientQuote: 'קל לומר תהיה אופטימי, אבל הפצע עדיין מפחיד אותי...',
+      feedback: '❌ עידוד שטחי מבטל את הרגש של המטופל וגורם לתחושה שלא מקשיבים לו.',
       badgeColor: '#6b7280',
       isCorrect: false
     }
@@ -176,6 +177,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
           <div className="patient-image-container" style={{ height: '320px' }}>
             <img src={patient.image} alt="יעקב - ביקור ראשון במרפאה" />
           </div>
+          <div dir="ltr" style={{ fontSize: '0.72rem', color: '#64748b', textAlign: 'left', marginTop: '-8px' }}>{AI_IMAGE_NOTE}</div>
 
           {/* Patient Description & Family Background Box */}
           <div style={{
@@ -229,7 +231,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a' }}>
                     מחלות רקע של המטופל
                   </h3>
-                  <span style={{ fontSize: '0.82rem', color: '#64748b' }}>לחץ לפתיחה/סגירה • סוכרת 2003, יתר לחץ דם, CVA ועוד</span>
+                  <span style={{ fontSize: '0.82rem', color: '#64748b' }}>לחץ לפתיחה/סגירה • סוכרת, IHD, CVA, כבד שומני ועוד</span>
                 </div>
               </div>
               {openSections.history ? <ChevronUp size={22} color="#64748b" /> : <ChevronDown size={22} color="#64748b" />}
@@ -424,26 +426,6 @@ export default function Stage1Admission({ data, patient, onNext }) {
 
                 </div>
 
-                {/* Lab Document Viewer Trigger Box */}
-                <div style={{
-                  background: '#ffffff',
-                  padding: '20px',
-                  borderRadius: '16px',
-                  border: '1.5px solid #cbd5e1',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
-                }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-                    <button onClick={() => openDoc('/labs/biochemistry_labs.png')} className="btn-primary" style={{ fontSize: '1rem', padding: '12px 24px', width: '100%', maxWidth: '450px', justifyContent: 'center' }}>
-                      <FileText size={18} />
-                      צפה בטבלת בדיקות המעבדה המקורית (A1C, גלוקוז, ליפידים)
-                    </button>
-                    <button onClick={() => openDoc('/labs/hba1c_history.jpg')} className="btn-secondary" style={{ fontSize: '0.95rem', padding: '12px 24px', width: '100%', maxWidth: '450px', justifyContent: 'center', borderColor: '#0284c7', color: '#0369a1', fontWeight: 800 }}>
-                      <BarChart2 size={18} />
-                      צפה בהיסטוריית HbA1C
-                    </button>
-                  </div>
-                </div>
-
               </div>
             )}
           </div>
@@ -472,7 +454,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a' }}>
                     טיפול תרופתי נוכחי בביקור
                   </h3>
-                  <span style={{ fontSize: '0.82rem', color: '#64748b' }}>לחץ לפתיחה/סגירה • טרגלודק 40u, Jardiance Duo ותרופות נוספות</span>
+                  <span style={{ fontSize: '0.82rem', color: '#64748b' }}>לחץ לפתיחה/סגירה • דגלודק (טרגלודק) 40u, Jardiance Duo ותרופות נוספות</span>
                 </div>
               </div>
               {openSections.meds ? <ChevronUp size={22} color="#64748b" /> : <ChevronDown size={22} color="#64748b" />}
@@ -563,6 +545,24 @@ export default function Stage1Admission({ data, patient, onNext }) {
                     }}
                   />
                 </div>
+
+                <div dir="ltr" style={{ fontSize: '0.72rem', color: '#64748b', textAlign: 'left', marginTop: '-8px' }}>{AI_IMAGE_NOTE}</div>
+
+                <div style={{
+                  background: '#ecfdf5',
+                  padding: '14px 18px',
+                  borderRadius: '14px',
+                  border: '1.5px solid #a7f3d0',
+                  color: '#065f46',
+                  fontSize: '0.95rem',
+                  lineHeight: 1.5,
+                  fontWeight: 600
+                }}>
+                  <strong>מסקנה טיפולית: </strong>
+                  טיפול בהשמנה באמצעות GLP-1RA עשוי, בהתאם לטיפול ולאוכלוסייה הנחקרת, להיות מלווה בשיפור במספר תוצאים הקשורים להשמנה
+                </div>
+
+                <RegNote refs={REFS.obesity} style={{ marginTop: 0 }} />
 
                 <div style={{ textAlign: 'center' }}>
                   <button 
@@ -854,7 +854,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: '0.88rem', fontWeight: 800, color: opt.isCorrect ? '#15803d' : '#991b1b', marginBottom: '6px' }}>
-                          תגובתו הרגשית של יעקב לדברי האחות ({opt.patientReaction}):
+                          תגובה אפשרית של יעקב ({opt.patientReaction}):
                         </div>
                         <div style={{ 
                           fontSize: '1.05rem', 

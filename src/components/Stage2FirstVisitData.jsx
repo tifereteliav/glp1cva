@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Cpu, Usb, FileText, Activity, ShieldAlert, HeartPulse, CheckCircle2, ArrowLeft, Pill, Dumbbell, Apple, Info, HelpCircle, ChevronDown, ChevronUp, CheckCircle, XCircle, Sparkles } from 'lucide-react';
-import QuizComponent from './QuizComponent';
+import RegNote, { REFS } from './RegNote';
+import { INDICATION_NOTE, INSULIN_SPC_NOTE } from '../data/simulationData';
 
 export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
   const [showDocModal, setShowDocModal] = useState(false);
@@ -20,57 +21,6 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
     setShowDocModal(true);
   };
 
-  const treatmentOptions = [
-    { 
-      id: 'dpp4', 
-      text: 'DPP4', 
-      isCorrect: false,
-      explanation: 'DPP4 לא הוכיח יעילות במניעת מחלות טרשיות, השפעתו על הורדת המשקל ניטרלית והשפעתו על הורדת A1C מוגבלת.'
-    },
-    { 
-      id: 'actos', 
-      text: 'אקטוס (Actos)', 
-      isCorrect: false,
-      explanation: 'אקטוס מעלה סיכון לעלייה במשקל ולאגירת נוזלים, ואינו מעניק מענה מספק לערכי סוכר גבוהים מאוד לאחר הארוחות.'
-    },
-    { 
-      id: 'acarbose', 
-      text: 'אקרבוז (Acarbose)', 
-      isCorrect: false,
-      explanation: 'אקרבוז בעלת יעילות מוגבלת מאוד בהורדת A1C וסוכר פוסט-פרנדיאלי, מלווה בתופעות לוואי גסטרואינטסטינליות מרובות (גזים ואי-נוחות).'
-    },
-    { 
-      id: 'novonorm', 
-      text: 'נובונורם (Novonorm)', 
-      isCorrect: false,
-      explanation: 'רמת הרזרווה הלבלבית אינה ידועה (אין בדיקת C-Peptide), רמת ה-A1C מאוד גבוהה והמטופל מרבה לנשנש ופחות לאכול ארוחות קבועות.'
-    },
-    { 
-      id: 'amaryl', 
-      text: 'אמריל (Amaryl)', 
-      isCorrect: false,
-      explanation: 'אמריל (סולפונילאוריאה) מעלה סיכון להיפוגליקמיה ולעלייה במשקל, במיוחד במטופל עם A1C גבוה והרגלי תזונה של נשנושים מרובים.'
-    },
-    { 
-      id: 'short_insulin', 
-      text: 'אינסולין קצר טווח', 
-      isCorrect: true, 
-      explanation: 'עקב היפרגליקמיה משמעותית לאחר האוכל, ו-A1C גבוה, מאפשר התאמה של המינון לאופי הארוחה ורמות הסוכר.'
-    },
-    { 
-      id: 'insulin_pump', 
-      text: 'משאבת אינסולין', 
-      isCorrect: false,
-      explanation: 'המטופל אינו זכאי בסל לקבלת משאבה.'
-    },
-    { 
-      id: 'long_insulin', 
-      text: 'אינסולין ארוך טווח', 
-      isCorrect: false,
-      explanation: 'המטופל כבר מטופל באינסולין ארוך טווח (טרגלודק) והגיע לערכי בצום מטוטרים (80-270 mg/dL). הבעיה העיקרית כעת היא היפרגליקמיה לאחר הארוחות (200-350 mg/dL), המחייבת אינסולין קצר טווח.'
-    }
-  ];
-
   const openQuestionsData = [
     {
       q: "1. האם המטופל עומד ביעד האיזון שלו?",
@@ -82,11 +32,10 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
     },
     {
       q: "3. איזה שינויים אפשר ונדרש לבצע? ולמה?",
-      a: "הוספת טיפול ב-GLP-1 (וויגובי):\n• הורדת משקל והפחתת תאבון.\n• הענקת הגנה קרדיווסקולרית ומוחית למניעת סיבוכים טרשתיים.\n• שיפור בתנגודת לאינסולין.\n• GLP-1 (וויגובי) משפרת גם דום נשימה בשינה."
+      a: "החלפת טיפול ב-GLP1RA (וויגובי-סמגלוטייד 2.4 מ\"ג):\n• הורדת משקל והפחתת תאבון.\n• הפחתת הסיכון ל-MACE במטופלים עם השמנה ומחלה CV קיימת.\n• פוטנציאל לשיפור באיזון הגליקמי."
     }
   ];
 
-  const selectedOpt = treatmentOptions.find(o => o.id === selectedTreatmentId);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
@@ -95,9 +44,9 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
       <div className="glass-card" style={{ padding: '24px 30px', borderRight: '6px solid #0284c7' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <span className="badge badge-blue" style={{ marginBottom: '8px' }}>{data.badge} • {data.date}</span>
+            <span className="badge badge-blue" style={{ marginBottom: '8px' }}>{data.badge}</span>
             <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#0f172a' }}>שלב 2: ביקור ראשון (חלק ב')</h2>
-            <p style={{ color: '#475569', fontSize: '1.05rem', marginTop: '4px' }}>ביקור ראשון (חלק ב') - ינואר 2026</p>
+            <p style={{ color: '#475569', fontSize: '1.05rem', marginTop: '4px' }}>{data.subtitle}</p>
           </div>
         </div>
       </div>
@@ -113,7 +62,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
               ביקור ראשון (חלק ב') • החלטה טיפולית
             </span>
             <h3 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0f172a', margin: 0 }}>
-              החלטה על התחלת טיפול באינסולין קצר טווח (נובורפיד)
+              החלטה על התחלת טיפול באינסולין קצר טווח (נובורפיד - Insulin aspart)
             </h3>
           </div>
         </div>
@@ -127,7 +76,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
           marginTop: '10px'
         }}>
           <p style={{ fontSize: '1.18rem', fontWeight: 800, color: '#15803d', lineHeight: 1.7, margin: 0 }}>
-            עקב היפרגליקמיה משמעותית לאחר האוכל ו-A1C מאוד גבוה, הוחלט להוסיף למטופל טיפול באינסולין קצר טווח נובורפיד (Novorapid) 3 פעמים ביום לפני כל ארוחה, והוא חובר לסנסור Libre.
+            עקב היפרגליקמיה משמעותית לאחר האוכל ו-A1C מאוד גבוה, הוחלט להוסיף למטופל טיפול באינסולין קצר טווח נובורפיד 3 פעמים ביום לפני כל ארוחה, והוא חובר לסנסור Libre.
           </p>
         </div>
       </div>
@@ -352,6 +301,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             );
           })}
         </div>
+        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.select]} />
       </div>
 
       {/* Section 4: Clinical Evidence & Studies for Wegovy Benefits */}
@@ -430,7 +380,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             }}
           >
             <span>🫀</span>
-            <span>השפעה על מחלות טרשתיות</span>
+            <span>השפעה על תוצאים CV</span>
           </button>
 
           <button
@@ -451,7 +401,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             }}
           >
             <span>🩺</span>
-            <span>השפעה על כבד שומני (MASLD / MASH)</span>
+            <span>השפעה על MASH ופיברוזיס כבדי</span>
           </button>
 
           <button
@@ -472,7 +422,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             }}
           >
             <span>📋</span>
-            <span>קריטריוני זכאות לוויגובי (גם דום נשימה בשינה נכלל)</span>
+            <span>קריטריוני זכאות לוויגובי (גם דום נשימה בשינה בלבד)</span>
           </button>
         </div>
 
@@ -491,13 +441,13 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
 
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingRight: '20px', margin: 0, fontSize: '0.98rem', color: '#334155', lineHeight: 1.6, fontWeight: 600 }}>
                   <li>
-                    <strong style={{ color: '#581c87' }}>ירידה דרמטית ומשמעותית במשקל (STEP 1):</strong> הטיפול ב-Wegovy (סמגלוטייד 2.4 מ"ג) הוביל לירידה ממוצעת מרשימה של <span style={{ color: '#d97706', fontWeight: 900 }}>16.9%</span> ממשקל הגוף כעבור 68 שבועות (לעומת 2.4% בלבד בקבוצת הפלצבו).
+                    <strong style={{ color: '#581c87' }}>ירידה משמעותית במשקל (STEP 1):</strong> הטיפול ב-Wegovy (סמגלוטייד 2.4 מ"ג) הוביל לירידה ממוצעת מרשימה של <span style={{ color: '#d97706', fontWeight: 900 }}>16.9%</span> ממשקל הגוף כעבור 68 שבועות (לעומת 2.4% בלבד בקבוצת הפלצבו).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>שמירה על המשקל לאורך זמן (STEP 5):</strong> המחקר ארוך הטווח (104 שבועות / שנתיים) הוכיח שמירה יציבה ומתמשכת על הירידה במשקל עם ירידה ממוצעת של <span style={{ color: '#d97706', fontWeight: 900 }}>16.7%</span>.
+                    <strong style={{ color: '#581c87' }}>ירידה משמעותית במשקל לאורך שנתיים של טיפול (STEP 5):</strong> מחקר ארוך הטווח (104 שבועות / שנתיים) הוכיח שמירה יציבה ומתמשכת על הירידה במשקל עם ירידה ממוצעת של <span style={{ color: '#d97706', fontWeight: 900 }}>16.7%</span>.
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>עליונות מובהקת בהשוואה ללירגלוטייד (STEP 8):</strong> במחקר השוואתי ישיר (Head to Head), סמגלוטייד 2.4 מ"ג הראתה יעילות כפולה ויותר עם ירידה של <span style={{ color: '#d97706', fontWeight: 900 }}>17.1%</span> במשקל לעומת 6.6% בלבד בלירגלוטייד 3.0 מ"ג.
+                    <strong style={{ color: '#581c87' }}>עליונות של סמגלוטייד 2.4 מ"ג בהשוואה ללירגלוטייד 3.0 מ"ג (STEP 8):</strong> במחקר השוואתי ישיר (Head to Head), סמגלוטייד 2.4 מ"ג הראתה ירידה גדולה יותר במשקל של <span style={{ color: '#d97706', fontWeight: 900 }}>17.1%</span> במשקל לעומת 6.6% בלבד בליראגלוטייד 3.0 מ"ג.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>שילוב עם התערבות התנהגותית (STEP 3):</strong> בשילוב טיפול התנהגותי אינטנסיבי (IBT) הושגה ירידה של <span style={{ color: '#d97706', fontWeight: 900 }}>17.6%</span> במשקל.
@@ -514,6 +464,14 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
                   </div>
                 </div>
               </div>
+
+              <RegNote
+                notes={[
+                  'Trial product estimand: Evaluates the treatment effect under the assumption that the trial product is taken as intended',
+                  'Results are derived from separate clinical trials with different study designs, populations, comparators and treatment durations; cross-trial comparisons should not be made.'
+                ]}
+                refs={REFS.step}
+              />
 
             </div>
           </div>
@@ -534,7 +492,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
 
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingRight: '20px', margin: 0, fontSize: '0.98rem', color: '#334155', lineHeight: 1.6, fontWeight: 600 }}>
                   <li>
-                    <strong style={{ color: '#581c87' }}>תופעות לוואי קלות עד בינוניות (Mild/Moderate):</strong> בחילות המופיעות תחת הטיפול ב-Wegovy 2.4mg הן ברובן המכריע בדרגת חומרה קלה עד בינונית בלבד וחולפות מעצמן.
+                    <strong style={{ color: '#581c87' }}>תופעות לוואי קלות עד בינוניות (Mild/Moderate):</strong> בחילות המופיעות תחת הטיפול ב-Wegovy 2.4mg הן ברובן בדרגת חומרה קלה עד בינונית בלבד וחולפות מעצמן.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>משך זמן חציוני קצר ביותר:</strong> משך הזמן החציוני (Median Duration) של תופעת הבחילה המדווחת עומד על <span style={{ color: '#d97706', fontWeight: 900 }}>8.0 ימים בלבד</span>.
@@ -558,6 +516,8 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
                 </div>
               </div>
 
+              <RegNote refs={[REFS.wegovySpc]} />
+
             </div>
           </div>
         )}
@@ -571,22 +531,22 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div style={{ background: '#faf5ff', padding: '14px 18px', borderRadius: '12px', borderRight: '4px solid #581c87' }}>
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#581c87', margin: 0 }}>
-                    תוצאות מחקר SELECT - ירידה מובהקת של 20% באירועים קרדיווסקולריים ומוחיים (MACE)
+                    תוצאות מחקר SELECT - ירידה מובהקת של 20% בסיכון ל- MACE במבוגרים עם מחלה קרדיווסקולרית קיימת ועודף משקל או השמנה, ללא סוכרת
                   </h4>
                 </div>
 
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingRight: '20px', margin: 0, fontSize: '0.98rem', color: '#334155', lineHeight: 1.6, fontWeight: 600 }}>
                   <li>
-                    <strong style={{ color: '#581c87' }}>הפחתה מובהקת של 20% בסיכון ל-MACE:</strong> מחקר ה-SELECT ההיסטורי הוכיח כי טיפול ב-Wegovy (סמגלוטייד 2.4 מ"ג) מביא לירידה יחסית דרמטית של <span style={{ color: '#d97706', fontWeight: 900 }}>20%</span> בסיכון לאירועים קרדיווסקולריים מיוחלים (3-Point MACE) בהשוואה לפלצבו (HR 0.80, 95% CI: 0.72-0.90, p&lt;0.001).
+                    <strong style={{ color: '#581c87' }}>הפחתה מובהקת של 20% בסיכון ל-MACE:</strong> מחקר ה-SELECT הוכיח כי טיפול ב-Wegovy (סמגלוטייד 2.4 מ"ג) מביא לירידה יחסית דרמטית של <span style={{ color: '#d97706', fontWeight: 900 }}>20%</span> בסיכון לאירועים קרדיווסקולריים (3-Point MACE) בהשוואה לפלצבו (HR 0.80, 95% CI: 0.72-0.90, p&lt;0.001).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>הגנה על 3 המדדים המרכזיים (3-Point MACE):</strong> ההפחתה שנצפתה כוללת ירידה במקביל במוות מסיבות קרדיווסקולריות (CV Death), באוטם שריר הלב לא קטלני (Non-fatal MI), ובאירוע מוחי לא קטלני (Non-fatal Stroke / CVA).
+                    <strong style={{ color: '#581c87' }}>3-Point MACE הוגדר כתוצא משולב הכולל:</strong> מוות מסיבות קרדיווסקולריות (CV Death), אוטם שריר הלב לא קטלני (Non-fatal MI) ואירוע מוחי לא קטלני (Non-fatal Stroke / CVA).
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>הכללה בהנחיות הקרדיולוגיה האירופיות (ESC 2024):</strong> בעקבות תוצאות מחקר ה-SELECT, הוכנסה Wegovy 2.4mg להנחיות ה-ESC העדכניות (2024) לניהול תסמונת כלילית כרונית (Chronic Coronary Syndrome).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>חשיבות קריטית עבור יעקב:</strong> במטופל בן 67 עם רקע של אירוע מוחי CVA (2023) ומחלת לב איסכמית IHD (צנתור חסימות 50%), הטיפול ב-Wegovy מעניק הגנה מוחית ולבבית חיונית למניעת אירוע מוחי או לבבי חוזר.
+                    <strong style={{ color: '#581c87' }}>עבור יעקב:</strong> לאור ההיסטוריה הקרדיווסקולרית של המטופל, הפחתת הסיכון הקרדיווסקולרי מהווה שיקול חשוב בבחירת הטיפול
                   </li>
                 </ul>
               </div>
@@ -601,6 +561,8 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
                 </div>
               </div>
 
+              <RegNote notes={[INDICATION_NOTE]} refs={[REFS.select, REFS.esc2024]} />
+
             </div>
           </div>
         )}
@@ -614,22 +576,22 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div style={{ background: '#faf5ff', padding: '14px 18px', borderRadius: '12px', borderRight: '4px solid #581c87' }}>
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#581c87', margin: 0 }}>
-                    תוצאות מחקר ה-ESSENCE - יעילות סמגלוטייד 2.4 מ"ג בטיפול בכבד שומני (MASLD / MASH)
+                    תוצאות מחקר ה-ESSENCE - יעילות semaglutide 2.4 mg בחולי MASH עם פיברוזיס F2-F3
                   </h4>
                 </div>
 
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingRight: '20px', margin: 0, fontSize: '0.98rem', color: '#334155', lineHeight: 1.6, fontWeight: 600 }}>
                   <li>
-                    <strong style={{ color: '#581c87' }}>שיפור מובהק בדלקת ובנזק הכבדי (MASH Resolution):</strong> במחקר ה-ESSENCE הפאזה ה-3, טיפול ב-Wegovy (סמגלוטייד 2.4 מ"ג) הוביל לנסיגה (Resolution) של דלקת הכבד הסטאטוטית ללא החמרה בפיברוזיס בשיעור גבוה מובהקת לעומת פלצבו.
+                    <strong style={{ color: '#581c87' }}>שיפור מובהק בדלקת ובנזק הכבדי (MASH Resolution):</strong> במחקר ה-ESSENCE הפאזה ה-3, טיפול ב-Wegovy (סמגלוטייד 2.4 מ"ג) הוביל לנסיגה (Resolution) של דלקת הכבד הסטאטוטית ללא החמרה בפיברוזיס בשיעור גבוה מובהק לעומת פלצבו.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>שיפור בפיברוזיס הכבדי (Fibrosis Improvement):</strong> הושג שיפור מובהק בדרגת הפיברוזיס הכבדי (הצטלקות הכבד) ללא החמרה בדלקת הכבד (Steatohepatitis).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>הפחתת תכולת השומן בכבד ואנזימי כבד (ALT/AST):</strong> טיפול ב-Wegovy מפחית משמעותית את אחוז השומן התוך-כבדי ומנרמל את ערכי תפקודי הכבד (ALT, AST).
+                    <strong style={{ color: '#581c87' }}>הפחתת תכולת השומן בכבד ואנזימי כבד (ALT/AST):</strong> טיפול ב-Wegovy מפחית משמעותית את אחוז השומן התוך-כבדי ומשפר את ערכי תפקודי הכבד (ALT, AST).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>חשיבות קריטית עבור יעקב:</strong> יעקב סובל מכבד שומני (MASLD), והטיפול ב-Wegovy מעניק מענה כפול - ירידה במשקל והגנה ישירה על ריקמת הכבד ומניעת התקדמות הפיברוזיס.
+                    <strong style={{ color: '#581c87' }}>חשיבות עבור יעקב:</strong> לאור מחלת הכבד מסוג MASLD, הפחתת משקל מהווה יעד טיפולי חשוב. במטופלים עם MASH ופיברוזיס בדרגות F2–F3 semaglutide 2.4 mg הדגים שיפור ב-MASH ובפיברוזיס
                   </li>
                 </ul>
               </div>
@@ -643,6 +605,8 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
                   </div>
                 </div>
               </div>
+
+              <RegNote notes={[INDICATION_NOTE]} refs={[REFS.essence]} />
 
             </div>
           </div>
@@ -669,7 +633,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
                     <strong style={{ color: '#581c87' }}>קריטריון BMI מעל 30 (BMI &gt; 30 kg/m²):</strong> זכאות מלאה למטופלים הסובלים מהשמנה (BMI מעל 30).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>קריטריון 27 ≤ BMI &lt; 30 עם מחלות נלוות (כולל דום נשימה בשינה!):</strong> זכאות למטופלים עם BMI מ-27 ומעלה בנוכחות לפחות סיבוך/גורם סיכון אחד מהבאים: <span style={{ color: '#d97706', fontWeight: 900 }}>דום נשימה בשינה (OSA)</span>, כבד שומני, טרום סוכרת, סוכרת מסוג 2, יתר לחץ דם, דיסליפידמיה, או מחלה קרדיווסקולרית.
+                    <strong style={{ color: '#581c87' }}>קריטריון 27 ≤ BMI &lt; 30 עם מחלות נלוות (כולל כבד שומני!):</strong> זכאות למטופלים עם BMI מ-27 ומעלה בנוכחות לפחות סיבוך/גורם סיכון אחד מהבאים: כבד שומני, טרום סוכרת, סוכרת מסוג 2, יתר לחץ דם, דיסליפידמיה, <span style={{ color: '#d97706', fontWeight: 900 }}>דום נשימה בשינה (OSA)</span>, או מחלה קרדיווסקולרית.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>גיל מאושר לשימוש:</strong> התרופה מאושרת לשימוש במבוגרים ומתבגרים החל מגיל 12 ומעלה.
@@ -709,7 +673,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
           <div style={{ background: '#fcf5ff', padding: '18px', borderRadius: '16px', border: '1px solid #e9d5ff' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6b21a8', fontWeight: 800, fontSize: '1rem', marginBottom: '6px' }}>
               <HeartPulse size={18} />
-              התחלת וויגובי 1 מ"ג
+              התחלת וויגובי (סמגלוטייד 2.4 מ"ג בטיטרציה המקובלת)
             </div>
             <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#7e22ce', marginBottom: '4px' }}>
               (מעבר מאוזמפיק 1 מ"ג)
@@ -748,6 +712,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
           </div>
 
         </div>
+        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} />
       </div>
 
       {/* Navigation Buttons */}
