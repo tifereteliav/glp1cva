@@ -301,7 +301,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             );
           })}
         </div>
-        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.select]} />
+        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.select, REFS.ada2026]} />
       </div>
 
       {/* Section 4: Clinical Evidence & Studies for Wegovy Benefits */}
@@ -495,13 +495,13 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
                     <strong style={{ color: '#581c87' }}>תופעות לוואי קלות עד בינוניות (Mild/Moderate):</strong> בחילות המופיעות תחת הטיפול ב-Wegovy 2.4mg הן ברובן בדרגת חומרה קלה עד בינונית בלבד וחולפות מעצמן.
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>משך זמן חציוני קצר ביותר:</strong> משך הזמן החציוני (Median Duration) של תופעת הבחילה המדווחת עומד על <span style={{ color: '#d97706', fontWeight: 900 }}>8.0 ימים בלבד</span>.
+                    <strong style={{ color: '#581c87' }}>משך זמן חציוני:</strong> משך הזמן החציוני (Median Duration) של תופעת הבחילה המדווחת עומד על <span style={{ color: '#d97706', fontWeight: 900 }}>8.0 ימים</span>.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>שיא זמני בתקופת הטיטרציה (Dose Escalation Period):</strong> שכיחות הבחילות עולה בעיקר בשבועות הראשונים (שבועות 0–16) במהלך העלייה ההדרגתית במינון, ולאחר מכן במעבר למינון היעד היא הולכת ויורדת בהתמדה עד להתייצבות מלאה.
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>שיעור אפסי של תופעות חמורות (Severe):</strong> תופעות לוואי של בחילה בדרגה חמורה (Severe) הינן נדירות ביותר (הקו הוורוד בתחתית התיעוד שואף לאפס).
+                    <strong style={{ color: '#581c87' }}>שיעור נמוך של תופעות חמורות (Severe):</strong> תופעות לוואי של בחילה בדרגה חמורה (Severe) היו נדירות (הקו הוורוד בתחתית הגרף).
                   </li>
                 </ul>
               </div>
@@ -627,13 +627,13 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
 
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingRight: '20px', margin: 0, fontSize: '0.98rem', color: '#334155', lineHeight: 1.6, fontWeight: 600 }}>
                   <li>
-                    <strong style={{ color: '#581c87' }}>זמינות וסבסוד בביטוחים המשלימים (שב"ן):</strong> תרופת Wegovy® (סמגלוטייד 2.4 מ"ג) זמינה בכל קופות החולים (כללית, מכבי, מאוחדת, לאומית) למבוטחי שב"ן ב-<span style={{ color: '#d97706', fontWeight: 900 }}>50% הנחה</span> (מחיר השתתפות עצמית של 338-562 ₪ בלבד בהתאם למינון).
+                    <strong style={{ color: '#581c87' }}>זמינות וסבסוד בביטוחים המשלימים (שב"ן):</strong> תרופת Wegovy® (סמגלוטייד 2.4 מ"ג) זמינה למבוטחי שב"ן בהנחה.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>קריטריון BMI מעל 30 (BMI &gt; 30 kg/m²):</strong> זכאות מלאה למטופלים הסובלים מהשמנה (BMI מעל 30).
                   </li>
                   <li>
-                    <strong style={{ color: '#581c87' }}>קריטריון 27 ≤ BMI &lt; 30 עם מחלות נלוות (כולל כבד שומני!):</strong> זכאות למטופלים עם BMI מ-27 ומעלה בנוכחות לפחות סיבוך/גורם סיכון אחד מהבאים: כבד שומני, טרום סוכרת, סוכרת מסוג 2, יתר לחץ דם, דיסליפידמיה, <span style={{ color: '#d97706', fontWeight: 900 }}>דום נשימה בשינה (OSA)</span>, או מחלה קרדיווסקולרית.
+                    <strong style={{ color: '#581c87' }}>קריטריון 27 ≤ BMI &lt; 30 עם מחלה נלווית:</strong> זכאות למטופלים עם BMI מ-27 ומעלה בנוכחות לפחות מחלה נלווית אחת הקשורה למשקל, כגון: טרום סוכרת או סוכרת מסוג 2, יתר לחץ דם, דיסליפידמיה, <span style={{ color: '#d97706', fontWeight: 900 }}>דום נשימה חסימתי בשינה (OSA)</span> או מחלה קרדיווסקולרית.
                   </li>
                   <li>
                     <strong style={{ color: '#581c87' }}>גיל מאושר לשימוש:</strong> התרופה מאושרת לשימוש במבוגרים ומתבגרים החל מגיל 12 ומעלה.

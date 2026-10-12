@@ -44,6 +44,7 @@ export const REFS = {
   select: 'Lincoff AM et al. N Engl J Med 2023;389:2221-2232. DOI:10.1056/NEJMoa2307563.',
   esc2024: 'Vrints C, Andreotti F, Koskinas KC, et al. 2024 ESC Guidelines for the management of chronic coronary syndromes. Eur Heart J 2024;45:3415-3537. doi.org/10.1093/eurheartj/ehae177.',
   essence: 'Sanyal AJ et al. N Engl J Med. 2025;392:2089–99.',
+  ada2026: 'ADA Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1).',
   tir: 'Battelino T et al. Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range. Diabetes Care 2019;42:1593-1603.',
   obesity: [
     'Bray GA, Kim KK, Wilding JPH. Obesity: a chronic relapsing progressive disease process. A position statement of the World Obesity Federation. Obes Rev 2017;18:715-723.',
