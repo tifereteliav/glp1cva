@@ -297,12 +297,15 @@ export default function Stage2Titration({ data, onNext, onPrev }) {
               נקודת בטיחות (מתוך עלון התכשיר):
             </h4>
             <p style={{ fontSize: '0.95rem', color: '#b91c1c', lineHeight: 1.5 }}>
-              בעת התחלת טיפול בסמגלוטייד במטופלים עם סוכרת מסוג 2, יש לשקול הפחתת מינון האינסולין הניתן במקביל, להפחתת הסיכון להיפוגליקמיה (Wegovy® IL SPC).
+              שילוב סמגלוטייד עם אינסולין עלול להגביר את הסיכון להיפוגליקמיה. בעת התחלת הטיפול יש לשקול הפחתת מינון האינסולין ולבצע ניטור והתאמה אישית. סמגלוטייד אינו תחליף לאינסולין; הוספת Wegovy לטיפול באינסולין לא הוערכה (Wegovy® IL SPC).
             </p>
           </div>
         </div>
 
-        <RegNote notes={[INDIVIDUAL_CASE_NOTE, INSULIN_SPC_NOTE]} />
+        <div style={{ marginTop: '12px', fontSize: '0.85rem', color: '#475569', fontWeight: 700 }}>
+          התאמות מינון האינסולין המוצגות הינן ספציפיות למקרה הקליני ואינן מהוות המלצת מינון כללית.
+        </div>
+        <RegNote notes={[INDIVIDUAL_CASE_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.wegovySpc]} />
 
       </div>
 

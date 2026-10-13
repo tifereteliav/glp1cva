@@ -28,11 +28,11 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
     },
     {
       q: "2. האם הטיפול שהמטופל מקבל מספיק אופטימלי למצב שלו?",
-      a: "לא. מתן מינוני אינסולין גבוהים לא מספק מספיק הגנה נגד סיבוכים טרשתיים."
+      a: "לא. טיפול באינסולין משפר את האיזון הגליקמי, אך לא הדגים הפחתה באירועים קרדיווסקולריים."
     },
     {
       q: "3. איזה שינויים אפשר ונדרש לבצע? ולמה?",
-      a: "החלפת טיפול ב-GLP1RA (וויגובי-סמגלוטייד 2.4 מ\"ג):\n• הורדת משקל והפחתת תאבון.\n• הפחתת הסיכון ל-MACE במטופלים עם השמנה ומחלה CV קיימת.\n• פוטנציאל לשיפור באיזון הגליקמי."
+      a: "החלפת טיפול ב-GLP1RA (וויגובי-סמגלוטייד 2.4 מ\"ג):\n• הורדת משקל והפחתת תאבון.\n• פוטנציאל לשיפור באיזון הגליקמי.\n• בקרב מטופלים עם עודף משקל/השמנה ומחלת CV קיימת ללא T2D וויגובי הפחית את הסיכון ל-MACE לעומת פלסבו."
     }
   ];
 
@@ -301,7 +301,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             );
           })}
         </div>
-        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.select, REFS.ada2026]} />
+        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.step2, REFS.select, REFS.origin, REFS.ada2026]} />
       </div>
 
       {/* Section 4: Clinical Evidence & Studies for Wegovy Benefits */}

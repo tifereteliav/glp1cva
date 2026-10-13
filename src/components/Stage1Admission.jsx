@@ -529,7 +529,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
                   lineHeight: 1.5,
                   fontWeight: 600
                 }}>
-                  <strong>מחלת ההשמנה הינה מחלה כרונית רב-מערכתית</strong> הפוגעת כמעט בכל איבר ותפקוד בגוף, וכוללת סיבוכים מטבוליים (סוכרת, מחלות לב, כבד שומני, דיסליפידמיה) וסיבוכים מכניים (דום נשימה בשינה, שחיקת מפרקים, בעיות בכפות הרגליים ועוד).
+                  <strong>מחלת ההשמנה הינה מחלה כרונית רב-מערכתית</strong> הפוגעת כמעט בכל איבר ותפקוד בגוף, וכוללת סיבוכים מטבוליים (סוכרת, מחלות לב, כבד שומני, דיסליפידמיה) וסיבוכים מכניים (דום נשימה בשינה, שחיקת מפרקים, כאבים בכפות הרגליים ועוד).
                 </div>
 
                 <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => openDoc('/labs/obesity_complications.png')}>
@@ -562,7 +562,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
                   טיפול בהשמנה באמצעות GLP-1RA עשוי, בהתאם לטיפול ולאוכלוסייה הנחקרת, להיות מלווה בשיפור במספר תוצאים הקשורים להשמנה
                 </div>
 
-                <RegNote refs={REFS.obesity} style={{ marginTop: 0 }} />
+                <RegNote refs={[...REFS.obesity, REFS.feet, REFS.step[0], REFS.select, REFS.essence]} style={{ marginTop: 0 }} />
 
                 <div style={{ textAlign: 'center' }}>
                   <button 

@@ -44,6 +44,9 @@ export const REFS = {
   select: 'Lincoff AM et al. N Engl J Med 2023;389:2221-2232. DOI:10.1056/NEJMoa2307563.',
   esc2024: 'Vrints C, Andreotti F, Koskinas KC, et al. 2024 ESC Guidelines for the management of chronic coronary syndromes. Eur Heart J 2024;45:3415-3537. doi.org/10.1093/eurheartj/ehae177.',
   essence: 'Sanyal AJ et al. N Engl J Med. 2025;392:2089–99.',
+  step2: 'Davies M et al. Lancet 2021;397:971-984. doi:10.1016/S0140-6736(21)00213-0.',
+  origin: 'ORIGIN Trial Investigators. Basal insulin and cardiovascular and other outcomes in dysglycemia. N Engl J Med 2012;367:319-328. doi:10.1056/NEJMoa1203858.',
+  feet: 'Butterworth PA et al. The association between body mass index and musculoskeletal foot disorders: a systematic review. Obes Rev 2012;13:630-642. doi:10.1111/j.1467-789X.2012.00996.x.',
   ada2026: 'ADA Professional Practice Committee. Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1).',
   tir: 'Battelino T et al. Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range. Diabetes Care 2019;42:1593-1603.',
   obesity: [
