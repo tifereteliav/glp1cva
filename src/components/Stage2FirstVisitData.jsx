@@ -28,7 +28,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
     },
     {
       q: "2. האם הטיפול שהמטופל מקבל מספיק אופטימלי למצב שלו?",
-      a: "לא. טיפול באינסולין משפר את האיזון הגליקמי, אך לא הדגים הפחתה באירועים קרדיווסקולריים."
+      a: "לא. למרות טיפול במינוני אינסולין גבוהים, המטופל אינו מאוזן (A1C 8.6%) וממשיך לסבול מהשמנה משמעותית (BMI 36.1)."
     },
     {
       q: "3. איזה שינויים אפשר ונדרש לבצע? ולמה?",
@@ -301,7 +301,7 @@ export default function Stage2FirstVisitData({ data, onNext, onPrev }) {
             );
           })}
         </div>
-        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.step2, REFS.select, REFS.origin, REFS.ada2026]} />
+        <RegNote notes={[INDICATION_NOTE, INSULIN_SPC_NOTE]} refs={[REFS.step[0], REFS.step2, REFS.select, REFS.ada2026]} />
       </div>
 
       {/* Section 4: Clinical Evidence & Studies for Wegovy Benefits */}

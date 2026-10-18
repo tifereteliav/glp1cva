@@ -6,6 +6,7 @@ import {
   ThumbsUp, Sparkles, CheckCircle, XCircle 
 } from 'lucide-react';
 import RegNote, { AI_IMAGE_NOTE, REFS } from './RegNote';
+import { INDICATION_NOTE } from '../data/simulationData';
 
 export default function Stage1Admission({ data, patient, onNext }) {
   // State for interactive collapsible sections (ALL CLOSED BY DEFAULT)
@@ -529,7 +530,7 @@ export default function Stage1Admission({ data, patient, onNext }) {
                   lineHeight: 1.5,
                   fontWeight: 600
                 }}>
-                  <strong>מחלת ההשמנה הינה מחלה כרונית רב-מערכתית</strong> הפוגעת כמעט בכל איבר ותפקוד בגוף, וכוללת סיבוכים מטבוליים (סוכרת, מחלות לב, כבד שומני, דיסליפידמיה) וסיבוכים מכניים (דום נשימה בשינה, שחיקת מפרקים, כאבים בכפות הרגליים ועוד).
+                  <strong>מחלת ההשמנה הינה מחלה כרונית רב-מערכתית</strong> הקשורה למגוון רחב של סיבוכים מטבוליים (סוכרת, מחלות לב, כבד שומני, דיסליפידמיה) וסיבוכים מכניים (דום נשימה בשינה, שחיקת מפרקים, כאבים בכפות הרגליים ועוד).
                 </div>
 
                 <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => openDoc('/labs/obesity_complications.png')}>
@@ -559,10 +560,10 @@ export default function Stage1Admission({ data, patient, onNext }) {
                   fontWeight: 600
                 }}>
                   <strong>מסקנה טיפולית: </strong>
-                  טיפול בהשמנה באמצעות GLP-1RA עשוי, בהתאם לטיפול ולאוכלוסייה הנחקרת, להיות מלווה בשיפור במספר תוצאים הקשורים להשמנה
+                  במחקרים קליניים באוכלוסיות שונות של אנשים עם עודף משקל או השמנה, טיפול בסמגלוטייד 2.4 מ"ג נקשר לשיפור בתוצאים ספציפיים, לרבות ירידה במשקל, הפחתת אירועים קרדיווסקולריים באוכלוסייה עם מחלה קרדיווסקולרית קיימת, ושיפור בתוצאים היסטולוגיים באנשים עם MASH ופיברוזיס F2–F3
                 </div>
 
-                <RegNote refs={[...REFS.obesity, REFS.feet, REFS.step[0], REFS.select, REFS.essence]} style={{ marginTop: 0 }} />
+                <RegNote notes={[INDICATION_NOTE]} refs={[...REFS.obesity, REFS.feet, REFS.step[0], REFS.select, REFS.essence]} style={{ marginTop: 0 }} />
 
                 <div style={{ textAlign: 'center' }}>
                   <button 
