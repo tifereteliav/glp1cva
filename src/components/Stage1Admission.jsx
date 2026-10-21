@@ -256,12 +256,6 @@ export default function Stage1Admission({ data, patient, onNext }) {
                     </div>
                   ))}
                 </div>
-                <div style={{ marginTop: '14px', textAlign: 'left' }}>
-                  <button onClick={() => openDoc('/labs/medical_conditions.jpg')} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>
-                    <ShieldAlert size={16} />
-                    צפה בדף בעיות ומחלות רקע מקורי (רשימת אבחנות)
-                  </button>
-                </div>
               </div>
             )}
           </div>
